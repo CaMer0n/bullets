@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e107Plugin name="Bullets Slider" lan="" version="1.0" date="2017-11-02" compatibility="2.0" installRequired="true" >
+	<author name="e107" url="https://e107.org" />
+	<summary lan="">Slider with bullets</summary>
+	<description lan="">Slider with bullets</description>
+	<keywords>
+		<word>generic</word>
+		<word>carousel</word>
+		<word>slider</word>
+	</keywords>
+	<category>content</category>
+	<copyright></copyright>
+	<adminLinks>
+		<link url="admin_config.php" description="" icon="" iconSmall="" icon128="" primary="true" >LAN_CONFIGURE</link>
+	</adminLinks>
+	<pluginPrefs>
+		<pref name='LAN_VISIBILITY'></pref>
+	</pluginPrefs>
+</e107Plugin>
