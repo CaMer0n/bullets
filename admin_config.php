@@ -11,6 +11,12 @@ if (!getperms('P'))
 
 // e107::lan('bullets',true);
 
+e107::css('bullets', 'css/bootstrap-iconpicker.min.css');
+e107::js('bullets', 'js/bootstrap-iconpicker.min.js');
+e107::js('bullets', 'js/bootstrap-iconpicker-iconset-all.min.js');
+
+
+
 
 class bullets_adminArea extends e_admin_dispatcher
 {
@@ -313,9 +319,18 @@ class bullets_form_ui extends e_admin_form_ui
 				{
 					$name = 'bullet_bullets['.$v.']';
 					$val = varset($value[$v]);
+					$ico = str_replace(".glyph", '', $val['icon']);
 
+					if(deftrue('e_DEBUG'))
+					{
+						$iconPicker = '<button class="btn btn-primary" role="iconpicker" name="'.$name.'[icon]" data-iconset="fontawesome" data-icon="'.$ico.'"></button>';
+					}
+					else
+					{
+						$iconPicker = $this->iconpicker($name.'[icon]',$val['icon'], "label", array('glyphs'=>1));
+					}
 					$text .= "<tr>
-								<td class='text-center'>".$this->iconpicker($name.'[icon]',$val['icon'], "label", array('glyphs'=>1))."</td>
+								<td class='text-center'>".$iconPicker."</td>
 								<td>".$this->btnClass($name.'[icon_style]', $val['icon_style'])."</td>
 								<td>".$this->textarea($name.'[text]',$val['text'],1,80,array('size'=>'block-level'))."</td>
 								<td>".$this->select($name.'[animation]',$optAnimation, $val['animation'], array('useValues'=>1), true)."</td>
