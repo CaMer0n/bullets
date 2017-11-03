@@ -110,6 +110,8 @@ class bullets_ui extends e_admin_ui
 		
 		public function beforeCreate($new_data,$old_data)
 		{
+			$new_data = $this->processGlyph($new_data);
+
 			return $new_data;
 		}
 	
@@ -128,7 +130,24 @@ class bullets_ui extends e_admin_ui
 		
 		public function beforeUpdate($new_data, $old_data, $id)
 		{
+			$new_data = $this->processGlyph($new_data);
+
 			return $new_data;
+		}
+
+		private function processGlyph($new_data)
+		{
+			foreach($new_data['bullet_bullets'] as $key=>$row)
+			{
+				if(!empty($row['icon']) && strpos($row['icon'],".glyph")===false)
+				{
+					$new_data['bullet_bullets'][$key]['icon'] = $row['icon'].".glyph";
+				}
+
+			}
+
+			return $new_data;
+
 		}
 
 		public function afterUpdate($new_data, $old_data, $id)
@@ -322,7 +341,7 @@ class bullets_form_ui extends e_admin_form_ui
 
 					if(deftrue('e_DEBUG'))
 					{
-						$iconPicker = '<button class="btn btn-default iconpicker" role="iconpicker" name="'.$name.'[icon]" data-iconset="glyphicon" data-icon="'.$ico.'"></button>';
+						$iconPicker = '<button class="btn btn-block btn-default iconpicker" role="iconpicker" name="'.$name.'[icon]" data-iconset="fontawesome" data-icon="'.$ico.'"></button>';
 					//	$iconPicker = '<div role="iconpicker"  data-iconset="fontawesome" data-icon="'.$ico.'"></div>';
 
 					}
@@ -334,7 +353,7 @@ class bullets_form_ui extends e_admin_form_ui
 								<td class='text-center'>".$iconPicker."</td>
 								<td>".$this->btnClass($name.'[icon_style]', $val['icon_style'])."</td>
 								<td>".$this->textarea($name.'[text]',$val['text'],1,80,array('size'=>'block-level'))."</td>
-								<td>".$this->select($name.'[animation]',$optAnimation, $val['animation'], array('useValues'=>1), true)."</td>
+								<td>".$this->select($name.'[animation]',$optAnimation, $val['animation'], array( 'useValues'=>1), true)."</td>
 								<td>".$this->select($name.'[animation_delay]',$optDelay, $val['animation_delay'], array('size'=>'small','useValues'=>1), true)."</td>
 							</tr>";
 
