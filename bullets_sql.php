@@ -5,5 +5,6 @@ CREATE TABLE `bullets` (
   `bullet_bullets` text NOT NULL,
   `bullet_button1` text NOT NULL,
   `bullet_button2` text NOT NULL,
+  `bullet_order tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (bullet_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

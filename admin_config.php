@@ -59,10 +59,10 @@ class bullets_ui extends e_admin_ui
 		protected $pid				= 'bullet_id';
 		protected $perPage			= 10; 
 		protected $batchDelete		= true;
-		protected $batchExport     = true;
+		protected $batchExport      = true;
 		protected $batchCopy		= true;
 
-	//	protected $sortField		= 'somefield_order';
+		protected $sortField		= 'bullet_order';
 	//	protected $sortParent      = 'somefield_parent';
 	//	protected $treePrefix      = 'somefield_title';
 
@@ -70,17 +70,19 @@ class bullets_ui extends e_admin_ui
 		
 	//	protected $listQry      	= "SELECT * FROM `#tableName` WHERE field != '' "; // Example Custom Query. LEFT JOINS allowed. Should be without any Order or Limit.
 	
-	//	protected $listOrder		= ' DESC';
+		protected $listOrder		= 'bullet_order';
 	
 		protected $fields 		= array (
 		   'checkboxes'         =>   array ( 'title' => '', 'type' => null, 'data' => null, 'width' => '5%', 'thclass' => 'center', 'forced' => '1', 'class' => 'center', 'toggle' => 'e-multiselect',  ),
 		  'bullet_id'           =>   array ( 'title' => LAN_ID, 'type' => null, 'data' => 'int', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-		  'bullet_title'        =>   array ( 'title' => LAN_TITLE, 'type' => 'text', 'data' => 'str', 'width' => '15%', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => array('size'=>'block-level'), 'class' => 'left', 'thclass' => 'left',  ),
+		  'bullet_title'        =>   array ( 'title' => LAN_TITLE, 'type' => 'text', 'data' => 'str', 'width' => '18%', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => array('size'=>'block-level'), 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_description'  =>   array ( 'title' => LAN_DESCRIPTION, 'type' => 'text', 'data' => 'str', 'width' => '30%', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => array('size'=>'block-level'), 'class' => 'left', 'thclass' => 'left',  ),
-		  'bullet_bullets'      =>   array ( 'title' => 'Bullets', 'type' => 'method', 'data' => 'json', 'width' => '40%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+		  'bullet_bullets'      =>   array ( 'title' => 'Bullets', 'type' => 'method', 'data' => 'json', 'width' => '38%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_button1'      =>   array ( 'title' => 'Button-1', 'type' => 'method', 'data' => 'json', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_button2'      =>   array ( 'title' => 'Button-2', 'type' => 'method', 'data' => 'json', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-		  'options'             =>   array ( 'title' => LAN_OPTIONS, 'type' => null, 'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
+		   'bullet_order'      =>   array ( 'title' => LAN_ORDER, 'type' => 'number', 'data' => 'int', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+
+		   'options'             =>   array ( 'title' => LAN_OPTIONS, 'type' => null, 'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
 		);		
 		
 		protected $fieldpref = array('bullet_title', 'bullet_description', 'bullet_bullets', 'bullet_button1', 'bullet_button2');
@@ -170,6 +172,7 @@ class bullets_form_ui extends e_admin_form_ui
 	// Custom Method/Function 
 	function bullet_bullets($curVal,$mode)
 	{
+		$value = array();
 
 		if(!empty($curVal))
 		{
@@ -187,17 +190,18 @@ class bullets_form_ui extends e_admin_form_ui
 
 			$tp = e107::getParser();
 
-			$text = '';
+			$text = '<table style="background-color:transparent" cellspacing="4">';
 
 				foreach($value as $row)
 				{
-					$text .= "<div class='animated ".$row['animation']."'>";
+					$text .= "<tr><td style='width:30px;vertical-align:top'>";
 					$text .= $tp->toIcon($row['icon']);
+					$text .= "</td><td>";
 					$text .= " ".$row['text'];
-					$text .= "</div>";
+					$text .= "</td></tr>";
 
 				}
-
+			$text .= "</table>";
 				return $text;
 
 			break;
@@ -285,8 +289,9 @@ class bullets_form_ui extends e_admin_form_ui
 
 		);
 
-				$text = "<table class='table table-striped table-condensed table-bordered'>
+				$text = "<table class='table table-condensed table-bordered'>
 				<colgroup>
+					<col style='width:5%' />
 					<col style='width:5%' />
 					<col />
 					<col />
@@ -294,13 +299,15 @@ class bullets_form_ui extends e_admin_form_ui
 				</colgroup>
 				<tr>
 					<th class='text-center'>Icon</th>
+					<th class='text-center'>Icon-style</th>
 					<th>Text</th>
 					<th>Animation</th>
-					<th>Delay</th>
+					<th>Delay (secs)</th>
 					</tr>";
 
 
-					$optDelay = range(0,30,2);
+					$optDelay = range(0,30);
+					$optStyle = array('default', 'primary', 'success', 'info', 'warning', 'danger');
 
 				foreach($amt as $v)
 				{
@@ -309,9 +316,10 @@ class bullets_form_ui extends e_admin_form_ui
 
 					$text .= "<tr>
 								<td class='text-center'>".$this->iconpicker($name.'[icon]',$val['icon'], "label", array('glyphs'=>1))."</td>
-								<td>".$this->textarea($name.'[text]',$val['text'],2,80,array('size'=>'block-level'))."</td>
+								<td>".$this->btnClass($name.'[icon_style]', $val['icon_style'])."</td>
+								<td>".$this->textarea($name.'[text]',$val['text'],1,80,array('size'=>'block-level'))."</td>
 								<td>".$this->select($name.'[animation]',$optAnimation, $val['animation'], array('useValues'=>1), true)."</td>
-								<td>".$this->select($name.'[animation_delay]',$optDelay, $val['animation_delay'], array('useValues'=>1), true)."</td>
+								<td>".$this->select($name.'[animation_delay]',$optDelay, $val['animation_delay'], array('size'=>'small','useValues'=>1), true)."</td>
 							</tr>";
 
 				}
@@ -329,8 +337,30 @@ class bullets_form_ui extends e_admin_form_ui
 		}
 	}
 
+	function btnClass($name,$value,$options=array())
+	{
 
-	private function bulletListInput($name, $value)
+
+		$text = $this->select_open($name);
+
+		$optStyle = array('default', 'primary', 'success', 'info', 'warning', 'danger');
+
+		$text .= "<option value=''>Select style...</option>";
+
+		foreach($optStyle as $s)
+		{
+			$selected = $s === $value ? "selected='selected'" : "";
+			$text .= "<option class='label-".$s."' value='".$s."' {$selected}>".$s."</option>";
+		}
+
+		$text .= "</select>";
+
+		return $text;
+
+	}
+
+
+	private function bulletButtonInput($name, $value)
 	{
 
 
@@ -343,7 +373,6 @@ class bullets_form_ui extends e_admin_form_ui
 				</colgroup>
 				";
 
-				$optBtn = array('default', 'primary', 'info', 'warning', 'danger');
 
 
 				//	$name = 'bullet_button1';
@@ -353,7 +382,7 @@ class bullets_form_ui extends e_admin_form_ui
 								<td class='text-center'>".$this->iconpicker($name.'[icon]',$val['icon'], "label", array('glyphs'=>1))."</td>
 								<td>".$this->text($name.'[label]',$val['label'],255,array('size'=>'block-level', 'placeholder'=>'Label'))."</td>
 								<td>".$this->text($name.'[url]',$val['url'],255,array('size'=>'block-level', 'placeholder'=>'URL'))."</td>
-								<td>".$this->select($name.'[class]',$optBtn, $val['class'], array('useValues'=>1), "Select style...")."</td>
+								<td>".$this->btnClass($name.'[class]', $val['class'])."</td>
 							</tr>";
 
 
@@ -367,12 +396,14 @@ class bullets_form_ui extends e_admin_form_ui
 
 	function renderBulletButton($value)
 	{
-		if(empty($value))
+		if(empty($value['label']))
 		{
 			return null;
 		}
 
-		return "<a href='".$value['url']."' class='btn btn-sm btn-".$value['class']."'>".$value['label']."</a>";
+		$icon = e107::getParser()->toIcon($value['icon']);
+
+		return "<a href='".$value['url']."' class='btn btn-sm btn-block btn-".$value['class']."'>".$icon." ".$value['label']."</a>";
 
 	}
 
@@ -398,7 +429,7 @@ class bullets_form_ui extends e_admin_form_ui
 			break;
 			
 			case 'write': // Edit Page
-				return $this->bulletListInput('bullet_button1', $value);
+				return $this->bulletButtonInput('bullet_button1', $value);
 			break;
 			
 			case 'filter':
@@ -426,7 +457,7 @@ class bullets_form_ui extends e_admin_form_ui
 			break;
 			
 			case 'write': // Edit Page
-				return $this->bulletListInput('bullet_button2', $value);
+				return $this->bulletButtonInput('bullet_button2', $value);
 			break;
 			
 			case 'filter':
