@@ -5,20 +5,59 @@
 
 if (!defined('e107_INIT')) { exit; }
 
-class plugin_bullets_shortcodes extends e_shortcode
+class plugin_bullets_bullets_shortcodes extends e_shortcode
 {
-
+	public $count;
 
 	/**
 	* {BULLET_ID}
 	*/
 	public function sc_bullet_id($parm=null)
 	{
-	
 		return $this->var['bullet_id'];
 	}
 	
+	public function sc_bullet_icon($parm=null)
+	{
+		if(empty($this->var['bullet_bullets'][$this->count]['icon']))
+		{
+			return null;
+		}
 
+		if(!empty($parm['raw']))
+		{
+			return $this->var['bullet_bullets'][$this->count]['icon'];
+		}
+
+		return e107::getParser()->toIcon($this->var['bullet_bullets'][$this->count]['icon']);
+	}
+
+	public function sc_bullet_count()
+	{
+		return $this->count;
+	}
+
+	public function sc_bullet_url()
+	{
+		return $this->var['bullet_bullets'][$this->count]['url'];
+	}
+
+	public function sc_bullet_text()
+	{
+		return $this->var['bullet_bullets'][$this->count]['text'];
+
+	}
+
+
+	public function sc_bullet_animation()
+	{
+		return $this->var['bullet_bullets'][$this->count]['animation'];
+	}
+
+	public function sc_bullet_animation_delay()
+	{
+		return $this->var['bullet_bullets'][$this->count]['animation_delay'];
+	}
 
 	/**
 	* {BULLET_TITLE}
@@ -74,25 +113,4 @@ class plugin_bullets_shortcodes extends e_shortcode
 	}
 	
 
-
-	/**
-	* {BULLET_BUTTON3}
-	*/
-	public function sc_bullet_button3($parm=null)
-	{
-	
-		return $this->var['bullet_button3'];
-	}
-	
-
-
-	/**
-	* {BULLET_BUTTON4}
-	*/
-	public function sc_bullet_button4($parm=null)
-	{
-	
-		return $this->var['bullet_button4'];
-	}
-	
-
+}
