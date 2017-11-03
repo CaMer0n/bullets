@@ -12,8 +12,7 @@ if (!getperms('P'))
 // e107::lan('bullets',true);
 
 e107::css('bullets', 'css/bootstrap-iconpicker.min.css');
-e107::js('bullets', 'js/bootstrap-iconpicker.min.js');
-e107::js('bullets', 'js/bootstrap-iconpicker-iconset-all.min.js');
+
 
 
 
@@ -323,7 +322,9 @@ class bullets_form_ui extends e_admin_form_ui
 
 					if(deftrue('e_DEBUG'))
 					{
-						$iconPicker = '<button class="btn btn-primary" role="iconpicker" name="'.$name.'[icon]" data-iconset="fontawesome" data-icon="'.$ico.'"></button>';
+						$iconPicker = '<button class="btn btn-default iconpicker" role="iconpicker" name="'.$name.'[icon]" data-iconset="glyphicon" data-icon="'.$ico.'"></button>';
+					//	$iconPicker = '<div role="iconpicker"  data-iconset="fontawesome" data-icon="'.$ico.'"></div>';
+
 					}
 					else
 					{
@@ -491,6 +492,10 @@ new bullets_adminArea();
 
 require_once(e_ADMIN."auth.php");
 e107::getAdminUI()->runPage();
+
+e107::js('bullets', 'js/bootstrap-iconpicker-iconset-all.min.js');
+e107::js('bullets', 'js/bootstrap-iconpicker.min.js');
+
 
 require_once(e_ADMIN."footer.php");
 exit;
