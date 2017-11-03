@@ -80,9 +80,7 @@ class bullets_ui extends e_admin_ui
 		  'bullet_bullets'      =>   array ( 'title' => 'Bullets', 'type' => 'method', 'data' => 'json', 'width' => '40%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_button1'      =>   array ( 'title' => 'Button-1', 'type' => 'method', 'data' => 'json', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_button2'      =>   array ( 'title' => 'Button-2', 'type' => 'method', 'data' => 'json', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-		//  'bullet_button3' =>   array ( 'title' => 'Button3', 'type' => 'method', 'data' => 'str', 'width' => 'auto', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-		//  'bullet_button4' =>   array ( 'title' => 'Button4', 'type' => 'method', 'data' => 'str', 'width' => 'auto', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-		  'options' =>   array ( 'title' => LAN_OPTIONS, 'type' => null, 'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
+		  'options'             =>   array ( 'title' => LAN_OPTIONS, 'type' => null, 'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
 		);		
 		
 		protected $fieldpref = array('bullet_title', 'bullet_description', 'bullet_bullets', 'bullet_button1', 'bullet_button2');
@@ -438,51 +436,7 @@ class bullets_form_ui extends e_admin_form_ui
 		}
 	}
 
-	
-	// Custom Method/Function 
-	function bullet_button3($curVal,$mode)
-	{
 
-		 		
-		switch($mode)
-		{
-			case 'read': // List Page
-				return $curVal;
-			break;
-			
-			case 'write': // Edit Page
-				return $this->text('bullet_button3',$curVal, 255, 'size=large');
-			break;
-			
-			case 'filter':
-			case 'batch':
-				return  array();
-			break;
-		}
-	}
-
-	
-	// Custom Method/Function 
-	function bullet_button4($curVal,$mode)
-	{
-
-		 		
-		switch($mode)
-		{
-			case 'read': // List Page
-				return $curVal;
-			break;
-			
-			case 'write': // Edit Page
-				return $this->text('bullet_button4',$curVal, 255, 'size=large');
-			break;
-			
-			case 'filter':
-			case 'batch':
-				return  array();
-			break;
-		}
-	}
 
 }		
 		
