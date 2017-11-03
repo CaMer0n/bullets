@@ -33,25 +33,25 @@ if(!class_exists("bullets_setup"))
 			$e107bullets =  array('bullet_id' => 0,'bullet_title' => 'Slide No.1','bullet_description' => 'Slide Description 1','bullet_bullets' => '[
     {
         "icon": "sun-o.glyph",
-        "text": "Bullet1",
+        "text": "Bullet Point 1",
         "animation": "fadeInUp",
         "animation_delay": "2"
     },
     {
         "icon": "glyphicon-cutlery.glyph",
-        "text": "Bullet2",
+        "text": "Bullet Point 2",
         "animation": "fadeInUp",
         "animation_delay": "4"
     },
     {
         "icon": "glyphicon-font.glyph",
-        "text": "Bullet3",
+        "text": "Bullet Point 3",
         "animation": "bounceIn",
         "animation_delay": "6"
     },
     {
         "icon": "rocket.glyph",
-        "text": "Bullet4",
+        "text": "Bullet Point 4",
         "animation": "headShake",
         "animation_delay": "8"
     },
@@ -75,7 +75,7 @@ if(!class_exists("bullets_setup"))
 
 			if($sql->insert('bullets',$e107bullets))
 			{
-				$mes->addSuccess("Inserted Default Table Row");
+				$mes->addSuccess("Inserted default table row");
 			}
 			else
 			{
