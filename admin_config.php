@@ -96,7 +96,7 @@ class bullets_ui extends e_admin_ui
 	//	protected $preftabs        = array('General', 'Other' );
 		protected $prefs = array(
 			'visibility'		=> array('title'=> LAN_VISIBILITY, 'tab'=>0, 'type'=>'userclass', 'data' => 'str', 'help'=>''),
-			'icon_pack'		=> array('title'=> "Icon Pack", 'tab'=>0, 'type'=>'dropdown', 'data' => 'str', 'writeParms'=>array(),'help'=>''),
+			'icon_pack'		=> array('title'=> "Icon Pack", 'tab'=>0, 'type'=>'method', 'data' => 'str', 'writeParms'=>array(),'help'=>''),
 		); 
 
 	
@@ -104,39 +104,7 @@ class bullets_ui extends e_admin_ui
 		{
 			// Set drop-down values (if any).
 
-			$custom = e107::getThemeGlyphs();
 
-		//	var_dump($custom);
-
-			$supported = array(
-				'materialdesign',
-				
-				'ionicon',
-				'weathericon',
-				'mapicon',
-				'octicon',
-				'typicon',
-				'elusiveicon',
-				'flagicon'
-			);
-
-			$opts = array(
-				'fontawesome' => "FontAwesome",
-				'glyphicon' => "Bootstrap"
-			);
-
-			foreach($supported as $gl)
-			{
-
-				$opts[$gl] = ucfirst($gl);
-
-			//	if(!in_array($id,$supported))
-				{
-			//		$opts[$id].= " (not loaded)";
-				}
-			}
-
-			$this->prefs['icon_pack']['writeParms']['optArray'] = $opts;
 		}
 
 		
@@ -226,6 +194,67 @@ class bullets_ui extends e_admin_ui
 class bullets_form_ui extends e_admin_form_ui
 {
 
+	function icon_pack($curVal,$mode)
+	{
+			$custom = e107::getThemeGlyphs();
+
+
+			$loaded = array();
+			foreach($custom as $val)
+			{
+				$loaded[] = $val['name'];
+			}
+
+
+			$supported = array(
+
+				'materialdesign',
+				'ionicon',
+				'weathericon',
+				'mapicon',
+				'octicon',
+				'typicon',
+				'elusiveicon',
+				'flagicon'
+			);
+
+			$opts = array(
+				'fontawesome' => "FontAwesome",
+				'glyphicon' => "Bootstrap"
+			);
+
+			foreach($supported as $gl)
+			{
+
+				$name = ucfirst($gl);
+
+				if(!in_array($gl,$loaded))
+				{
+					$gl = "__".$gl;
+				}
+
+				$opts[$gl] = $name;
+
+
+			}
+
+			$text = $this->select_open('icon_pack');
+
+			foreach($opts as $key=>$val)
+			{
+				$disabled = (strpos($key,'__')===0) ? 'disabled' : '';
+				$selected = ($curVal === $key) ? "selected" : "";
+
+				$text .= "<option value='".$key."' ".$disabled." ".$selected.">".$val."</option>\n";
+
+			}
+
+			$text .= $this->select_close();
+
+
+			return $text;
+
+	}
 	
 	// Custom Method/Function 
 	function bullet_bullets($curVal,$mode)
@@ -371,20 +400,9 @@ class bullets_form_ui extends e_admin_form_ui
 				{
 					$name = 'bullet_bullets['.$v.']';
 					$val = varset($value[$v]);
-					$ico = str_replace(".glyph", '', $val['icon']);
 
-				//	if(deftrue('e_DEBUG'))
-					{
-						$iconPicker = '<button class="btn btn-block btn-default iconpicker" role="iconpicker" name="'.$name.'[icon]" data-iconset="fontawesome" data-icon="'.$ico.'"></button>';
-					//	$iconPicker = '<div role="iconpicker"  data-iconset="fontawesome" data-icon="'.$ico.'"></div>';
-
-					}
-				//	else
-					{
-				//		$iconPicker = $this->iconpicker($name.'[icon]',$val['icon'], "label", array('glyphs'=>1));
-					}
 					$text .= "<tr>
-								<td class='text-center'>".$iconPicker."</td>
+								<td class='text-center'>".$this->glyphPicker($name.'[icon]', $val['icon'])."</td>
 								<td>".$this->btnClass($name.'[icon_style]', $val['icon_style'])."</td>
 								<td>".$this->textarea($name.'[text]',$val['text'],1,80,array('size'=>'block-level'))."</td>
 								<td>".$this->select($name.'[animation]',$optAnimation, $val['animation'], array( 'useValues'=>1), true)."</td>
@@ -404,6 +422,17 @@ class bullets_form_ui extends e_admin_form_ui
 				return  array();
 			break;
 		}
+	}
+
+
+	function glyphPicker($name,$value)
+	{
+		$ico = str_replace(".glyph", '', $value);
+
+		$pack = e107::pref('bullets','icon_pack', 'fontawesome');
+
+		return '<button class="btn btn-block btn-default iconpicker" role="iconpicker" name="'.$name.'" data-iconset="'.$pack.'" data-icon="'.$ico.'"></button>';
+
 	}
 
 	function btnClass($name,$value,$options=array())
@@ -429,7 +458,7 @@ class bullets_form_ui extends e_admin_form_ui
 	}
 
 
-	private function bulletButtonInput($name, $value)
+	private function bulletButtonInput($name, $val)
 	{
 
 
@@ -443,17 +472,8 @@ class bullets_form_ui extends e_admin_form_ui
 				";
 
 
-
-				//	$name = 'bullet_button1';
-					$val = $value;
-				$ico = str_replace(".glyph", '', $val['icon']);
-
-				$iconPicker = '<button class="btn btn-block btn-default iconpicker" role="iconpicker" name="'.$name.'[icon]" data-iconset="materialdesign" data-icon="'.$ico.'"></button>';
-
-			//	$iconPicker = $this->iconpicker($name.'[icon]',$val['icon'], "label", array('glyphs'=>1));
-
 					$text .= "<tr>
-								<td class='text-center'>".$iconPicker."</td>
+								<td class='text-center'>".$this->glyphPicker($name.'[icon]', $val['icon'])."</td>
 								<td>".$this->text($name.'[label]',$val['label'],255,array('size'=>'block-level', 'placeholder'=>'Label'))."</td>
 								<td> ".$this->text($name.'[url]',$val['url'],255,array('size'=>'block-level', 'placeholder'=>'URL'))."</td>
 								<td> ".$this->btnClass($name.'[class]', $val['class'])."</td>
