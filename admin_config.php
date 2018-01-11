@@ -168,7 +168,7 @@ class bullets_ui extends e_admin_ui
 			$caption = LAN_HELP;
 			$text = 'Some help text';
 
-			return array('caption'=>$caption,'text'=> $text);
+		//	return array('caption'=>$caption,'text'=> $text);
 
 		}
 			
