@@ -34,8 +34,6 @@ $data = e107::getDb()->retrieve('bullets','*',"ORDER BY bullet_order",true);
 
 $sc = e107::getScBatch('bullets',true, 'bullets');
 
-
-
 $template = e107::getTemplate('bullets','bullets','menu');
 
 
