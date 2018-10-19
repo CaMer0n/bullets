@@ -16,10 +16,11 @@ if (!defined('e107_INIT')) { exit; }
 
 if(USER_AREA) // prevents inclusion of JS/CSS/meta in the admin area.
 {
+	// @todo add check for the bullets_menu being active.
+
 	e107::library('load', 'animate.css');
-//	e107::js('_blank', 'js/blank.js');      // loads e107_plugins/_blank/js/blank.js on every page.
-//	e107::css('_blank', 'css/blank.css');    // loads e107_plugins/_blank/css/blank.css on every page
-///	e107::meta('keywords', 'blank,words');   // sets meta keywords on every page.
+	e107::css('bullets', 'css/bullets.css');
+
 }
 
 
