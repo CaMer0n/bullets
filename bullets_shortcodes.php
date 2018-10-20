@@ -52,7 +52,10 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 	{
 		return $this->var['bullet_slide_active'];
 	}
-	
+
+  /* {BULLET_ICON} returs <i class="fa fa-stumbleupon-circle"><!-- --></i> */
+  /* {BULLET_ICON: raw=1}	returns database value, not able to use in template */
+  
 	public function sc_bullet_icon($parm=null)
 	{
 		if(empty($this->var['bullet_bullets'][$this->count]['icon']))
@@ -68,15 +71,27 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 		return e107::getParser()->toIcon($this->var['bullet_bullets'][$this->count]['icon']);
 	}
 
+  /* <span {BULLET_ICON_STYLE} >                   result: <span class="primary"             */  
+  /* <span class="{BULLET_ICON_STYLE: raw=1}" >    result: <span class="primary"            */
+  /* <span {BULLET_ICON_STYLE: class=h2 color-} >  result: <span class="h2 color-primary">  */
+  
 	public function sc_bullet_icon_style($parm=null)
 	{
 		if(empty($this->var['bullet_bullets'][$this->count]['icon_style']))
 		{
 			return null;
 		}
-
+   if(!empty($parm['raw'])) {
 		return $this->var['bullet_bullets'][$this->count]['icon_style'];
-
+   }
+   
+   if(!empty($parm['class']))  {
+     $class = $parm['class'] . $this->var['bullet_bullets'][$this->count]['icon_style']; 
+   } 
+   else  $class = $this->var['bullet_bullets'][$this->count]['icon_style'];   
+  
+   return "class = '".$class."'";
+   
 	}
 
 	public function sc_bullet_count()

@@ -19,7 +19,12 @@ $BULLETS_TEMPLATE['menu']['start'] 	    = '<!-- Bullet Menu: start -->
 											<div class="ms-hero-img-slider item {BULLET_SLIDE_ACTIVE}"><h2>{BULLET_TITLE}</h2><p>{BULLET_DESCRIPTION}</p>
 											<ul class="list-unstyled">';
 
-$BULLETS_TEMPLATE['menu']['item'] 	    = '<li class="animated {BULLET_ANIMATION} {BULLET_ANIMATION_DELAY}">{BULLET_ICON} {BULLET_TEXT} </li>';
+$BULLETS_TEMPLATE['menu']['item'] 	    = 
+'<li>
+  <div  class="animated {BULLET_ANIMATION} {BULLET_ANIMATION_DELAY}"> 
+      <span {BULLET_ICON_STYLE} > {BULLET_ICON} {BULLET_TEXT} </span>
+  </div>
+</li>';
 
 $BULLETS_TEMPLATE['menu']['end'] 	    = '</ul></div><!-- Bullet Menu: end -->';
 
@@ -32,3 +37,4 @@ $BULLETS_TEMPLATE['menu']['footer'] 	= '<a class="left carousel-control" href="#
 						              </div>
 						           <!-- Bullet Menu: footer -->';
 
+ 
