@@ -41,8 +41,8 @@ $BULLETS_TEMPLATE['menu']['start'] 	    = '<div class="item {BULLET_SLIDE_ACTIVE
 						                  <div class="carousel-caption">
 						                    <div class="ms-hero-material-text-container">
 						                      <header class="ms-hero-material-title animated slideInLeft animation-delay-5">
-						                        <h1 class="animated fadeInLeft animation-delay-15 font-smoothing">{BULLET_TITLE: enwrap=strong}</h1>
-						                        <h2 class="animated fadeInLeft animation-delay-18">{BULLET_DESCRIPTION: enwrap=span&class=text-warning}</h2>
+						                        <h1 class="animated fadeInLeft animation-delay-10 font-smoothing">{BULLET_TITLE: enwrap=strong}</h1>
+						                        <h2 class="animated fadeInLeft animation-delay-12">{BULLET_DESCRIPTION: enwrap=span&class=text-warning}</h2>
 						                      </header>
 						                      <ul class="bullet-list list-unstyled">';
 
