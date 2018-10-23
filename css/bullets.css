@@ -1,1 +1,126 @@
 /* css */
+
+.ms-list-icon {
+    display: table-cell;
+    vertical-align: middle
+}
+
+li .ms-list-icon .ms-icon {
+    margin: 0 20px 0 0;
+    margin: 0 2rem 0 0
+}
+
+.ms-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    background-color: #03a9f4;
+    color: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    text-align: center;
+    line-height: 2.2
+}
+
+.ms-icon.color-info {
+    color: #fff!important;
+    background-color: #00bcd4
+}
+
+.ms-icon.color-warning {
+    color: #fff!important;
+    background-color: #ff9800
+}
+
+.ms-icon.color-danger {
+    color: #fff!important;
+    background-color: #f44336
+}
+
+.ms-icon.color-success {
+    color: #fff!important;
+    background-color: #4caf50
+}
+
+.ms-icon.color-royal {
+    color: #fff!important;
+    background-color: #9c27b0
+}
+
+.ms-icon.color-black {
+    color: #fff!important;
+    background-color: #000
+}
+
+.ms-icon.ms-icon-inverse {
+    background-color: transparent;
+    color: #03a9f4;
+    border: solid 1px #03a9f4
+}
+
+.ms-icon.ms-icon-inverse.color-info {
+    background-color: transparent;
+    border-color: #00bcd4;
+    color: #00bcd4!important
+}
+
+.ms-icon.ms-icon-inverse.color-warning {
+    background-color: transparent;
+    border-color: #ff9800;
+    color: #ff9800!important
+}
+
+.ms-icon.ms-icon-inverse.color-danger {
+    background-color: transparent;
+    border-color: #f44336;
+    color: #f44336!important
+}
+
+.ms-icon.ms-icon-inverse.color-success {
+    background-color: transparent;
+    border-color: #4caf50;
+    color: #4caf50!important
+}
+
+.ms-icon.ms-icon-inverse.color-royal {
+    background-color: transparent;
+    border-color: #9c27b0;
+    color: #9c27b0!important
+}
+
+.ms-icon.ms-icon-inverse.color-black {
+    background-color: transparent;
+    border-color: #000;
+    color: #000!important
+}
+
+.ms-icon.ms-icon-square {
+    border-radius: 0
+}
+
+.ms-icon.ms-icon-round {
+    border-radius: 5px
+}
+
+.ms-icon.ms-icon-circle {
+    border-radius: 50%
+}
+ 
+.ms-icon.ms-icon-xlg {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 24px
+}
+ 
+
+ 
+li .ms-list-text {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 18px;
+    font-size: 1.8rem;
+    line-height: 30px;
+    line-height: 3rem
+}
