@@ -88,7 +88,7 @@ foreach($data as $k=>$row)
 
 $text .= $tp->parseTemplate($template['footer'], true, $sc);
 
-e107::getRender()->tablerender("bullets", $text, 'bullets-menu');
+e107::getRender()->tablerender(null, $text, 'bullets-menu');
 
 /*
 $arr = array(

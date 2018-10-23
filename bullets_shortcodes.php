@@ -17,6 +17,16 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 		return $this->var['bullet_id'];
 	}
 
+	public function sc_bullet_image($parm=null)
+	{
+		if(empty($this->var['bullet_image']))
+		{
+			return null;
+		}
+
+		return e107::getParser()->replaceConstants($this->var['bullet_image'], 'full');
+	}
+
 	public function sc_bullet_carousel_indicators($parm=null)
 	{
 		$target = !empty($parm['target']) ? $parm['target'] : 'carousel-bullets';
@@ -71,29 +81,17 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 		return e107::getParser()->toIcon($this->var['bullet_bullets'][$this->count]['icon']);
 	}
 
-  /* <span {BULLET_ICON_STYLE} >                   result: <span class="primary"             */  
-  /* <span class="{BULLET_ICON_STYLE: raw=1}" >    result: <span class="primary"            */
-  /* <span {BULLET_ICON_STYLE: class=h2 color-} >  result: <span class="h2 color-primary">  */
-  
 	public function sc_bullet_icon_style($parm=null)
 	{
 		if(empty($this->var['bullet_bullets'][$this->count]['icon_style']))
 		{
 			return null;
 		}
-   if(!empty($parm['raw'])) {
-		return $this->var['bullet_bullets'][$this->count]['icon_style'];
-   }
-   
-   if(!empty($parm['class']))  {
-     $class = $parm['class'] . $this->var['bullet_bullets'][$this->count]['icon_style']; 
-   } 
-   else  $class = $this->var['bullet_bullets'][$this->count]['icon_style'];   
-  
-   return "class = '".$class."'";
-   
-	}
 
+		return $this->var['bullet_bullets'][$this->count]['icon_style'];
+   
+   } 
+  
 	public function sc_bullet_count()
 	{
 		return $this->count;
