@@ -394,7 +394,15 @@ class bullets_form_ui extends e_admin_form_ui
 					</tr>";
 
 
-					$optDelay = range(0,60);
+					$tmp = range(0,60);
+					$optDelay = array();
+
+					foreach($tmp as $val)
+					{
+						$optDelay[$val] = $val/10;
+					}
+
+
 					$optStyle = array('default', 'primary', 'success', 'info', 'warning', 'danger');
 
 				foreach($amt as $v)
@@ -407,7 +415,7 @@ class bullets_form_ui extends e_admin_form_ui
 								<td>".$this->btnClass($name.'[icon_style]', $val['icon_style'])."</td>
 								<td>".$this->textarea($name.'[text]',$val['text'],1,80,array('size'=>'block-level'))."</td>
 								<td>".$this->select($name.'[animation]',$optAnimation, $val['animation'], array( 'useValues'=>1), true)."</td>
-								<td>".$this->select($name.'[animation_delay]',$optDelay, $val['animation_delay'], array('size'=>'small','useValues'=>1), true)."</td>
+								<td>".$this->select($name.'[animation_delay]',$optDelay, $val['animation_delay'], array('size'=>'small'), true)."</td>
 							</tr>";
 
 				}

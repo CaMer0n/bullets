@@ -81,6 +81,11 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 		return e107::getParser()->toIcon($this->var['bullet_bullets'][$this->count]['icon']);
 	}
 
+	/**
+	 * Returns success, info, primary, warning and danger strings.
+	 * @param null $parm
+	 * @return string|null
+	 */
 	public function sc_bullet_icon_style($parm=null)
 	{
 		if(empty($this->var['bullet_bullets'][$this->count]['icon_style']))
@@ -129,7 +134,8 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 	}
 
 	/**
-	* {BULLET_TITLE}
+	* @example {BULLET_TITLE}
+	* @example {BULLET_TITLE: enwrap=strong} // replace [ ] chars with <strong> tags.
 	*/
 	public function sc_bullet_title($parm=null)
 	{
@@ -165,7 +171,8 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 	}
 
 	/**
-	* {BULLET_DESCRIPTION}
+	* @example {BULLET_DESCRIPTION}
+	* @example {BULLET_DESCRIPTION: enwrap=span&class=text-info} // replace [ ] chars with <span> tags and apply text-info class.
 	*/
 	public function sc_bullet_description($parm=null)
 	{
@@ -179,16 +186,13 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 	*/
 	public function sc_bullet_bullets($parm=null)
 	{
-	
 		return $this->var['bullet_bullets'];
 	}
 	
 
-
 	/**
 	* {BULLET_BUTTON1_xxxx}
 	*/
-
 	public function sc_bullet_button1_icon($parm=null)
 	{
 		if(empty($this->var['bullet_button1']['icon']))
