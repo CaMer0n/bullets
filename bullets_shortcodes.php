@@ -63,6 +63,11 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 		return $this->var['bullet_slide_active'];
 	}
 
+	public function sc_bullet_slide_interval($parm=null)
+	{
+		return e107::pref('bullets', 'slide_interval', 7500);
+	}
+
   /* {BULLET_ICON} returs <i class="fa fa-stumbleupon-circle"><!-- --></i> */
   /* {BULLET_ICON: raw=1}	returns database value, not able to use in template */
   

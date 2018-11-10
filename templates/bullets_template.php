@@ -8,7 +8,7 @@ if (!defined('e107_INIT')) { exit; }
 $BULLETS_TEMPLATE = array();
 
 $BULLETS_TEMPLATE['menu']['header'] 	= '<!-- Bullet Menu: header -->{SETIMAGE: w=400&h=400}
-											<div id="carousel-bullets" class="carousel carousel-fade slide" data-ride="carousel" data-interval="10000">
+											<div id="carousel-bullets" class="carousel carousel-fade slide" data-ride="carousel" data-interval="{BULLET_SLIDE_INTERVAL}">
 							                <div class="carousel-inner" role="listbox">';
 
 
@@ -38,15 +38,16 @@ $BULLETS_TEMPLATE['menu']['start'] 	    = '<div class="item {BULLET_SLIDE_ACTIVE
 						                    <div class="bullet-text-container">
 						                      <header class="bullet-title animated slideInLeft animation-delay-5">
 						                        <h1 class="animated fadeInLeft animation-delay-10 font-smoothing">{BULLET_TITLE: enwrap=strong}</h1>
-						                        <h2 class="animated fadeInLeft animation-delay-12">{BULLET_DESCRIPTION: enwrap=span&class=text-info}</h2>
+						                        <h2 class="animated fadeInLeft animation-delay-12">{BULLET_DESCRIPTION: enwrap=span&class=text-bold}</h2>
 						                      </header>
 						                      <ul class="bullet-list list-unstyled">';
 
 $BULLETS_TEMPLATE['menu']['end'] 	    = ' </ul>
 					                      <div class="bullet-buttons text-right">
 					                        
-					                          <a href="{BULLET_BUTTON1_URL}" class="btn btn-{BULLET_BUTTON1_CLASS} btn-raised animated fadeInRight animation-delay-24">
-					                            {BULLET_BUTTON1_ICON} {BULLET_BUTTON1_LABEL}</a>
+					                          <a href="{BULLET_BUTTON1_URL}" class="btn btn-{BULLET_BUTTON1_CLASS} btn-raised animated fadeInRight animation-delay-28">
+					                            {BULLET_BUTTON1_ICON} {BULLET_BUTTON1_LABEL}
+					                          </a>
 					                        
 					                      </div>
 					                    </div>

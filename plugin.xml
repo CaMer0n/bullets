@@ -16,5 +16,9 @@
 	<pluginPrefs>
 		<pref name='visibility'>0</pref>
 		<pref name='icon_pack'>fontawesome</pref>
+		<pref name='slide_interval'>7000</pref>
 	</pluginPrefs>
+	<mediaCategories>
+		<category type="image">Bullets Images</category>
+	</mediaCategories>
 </e107Plugin>

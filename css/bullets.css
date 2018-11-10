@@ -34,6 +34,11 @@ li .bullet-list-icon .bullet-icon {
 	border-radius: 50%
 	}
 
+.bullet-buttons { padding-right:20px }
+
+
+.text-bold { font-weight: bold; }
+
 .bullet-icon.bullet-icon-xlg {
 	width: 60px;
 	height: 60px;

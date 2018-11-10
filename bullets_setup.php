@@ -27,59 +27,16 @@ if(!class_exists("bullets_setup"))
 		 */
 		function install_post($var)
 		{
-			$sql = e107::getDb();
-			$mes = e107::getMessage();
+			$ret = e107::getXml(true)->e107Import(e_PLUGIN."bullets/xml/install.xml");
 
-			$e107bullets =  array('bullet_id' => 0,'bullet_title' => 'Slide No.1','bullet_description' => 'Slide Description 1','bullet_bullets' => '[
-    {
-        "icon": "sun-o.glyph",
-        "text": "Bullet Point 1",
-        "animation": "fadeInUp",
-        "animation_delay": "2"
-    },
-    {
-        "icon": "glyphicon-cutlery.glyph",
-        "text": "Bullet Point 2",
-        "animation": "fadeInUp",
-        "animation_delay": "4"
-    },
-    {
-        "icon": "glyphicon-font.glyph",
-        "text": "Bullet Point 3",
-        "animation": "bounceIn",
-        "animation_delay": "6"
-    },
-    {
-        "icon": "rocket.glyph",
-        "text": "Bullet Point 4",
-        "animation": "headShake",
-        "animation_delay": "8"
-    },
-    {
-        "icon": "",
-        "text": "",
-        "animation": "",
-        "animation_delay": ""
-    }
-]','bullet_button1' => '{
-    "icon": "glyphicon-dashboard.glyph",
-    "label": "Gauage",
-    "url": "\\/myguage",
-    "class": "primary"
-}','bullet_button2' => '{
-    "icon": "glyphicon-asterisk.glyph",
-    "label": "Action",
-    "url": "\\/something",
-    "class": "warning"
-}');
-
-			if($sql->insert('bullets',$e107bullets))
+			if(!empty($ret['success']))
 			{
-				$mes->addSuccess("Inserted default table row");
+				e107::getMessage()->addError("Default slides imported.");
 			}
-			else
+
+			if(!empty($ret['failed']))
 			{
-				$mes->addError("Couldn't insert default data");
+				e107::getMessage()->addError("Failed to import default slides.");
 			}
 
 		}

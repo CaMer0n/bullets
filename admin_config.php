@@ -80,7 +80,7 @@ class bullets_ui extends e_admin_ui
 		protected $fields 		= array (
 		   'checkboxes'         =>   array ( 'title' => '', 'type' => null, 'data' => null, 'width' => '5%', 'thclass' => 'center', 'forced' => '1', 'class' => 'center', 'toggle' => 'e-multiselect',  ),
 		  'bullet_id'           =>   array ( 'title' => LAN_ID, 'type' => null, 'data' => 'int', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-			   'bullet_image'       => array('title'=> LAN_IMAGE, 'type'=>'image', 'data'=>'str', 'readParms'=>array('thumb'=>'100x80')),
+		   'bullet_image'       => array('title'=> LAN_IMAGE, 'type'=>'image', 'data'=>'str', 'readParms'=>array('thumb'=>'100x80'), 'writeParms'=>array('media'=>'bullets^')),
 
 		  'bullet_title'        =>   array ( 'title' => LAN_TITLE, 'type' => 'text', 'data' => 'str', 'width' => '18%', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => array('size'=>'block-level'), 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_description'  =>   array ( 'title' => LAN_DESCRIPTION, 'type' => 'text', 'data' => 'str', 'width' => '30%', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => array('size'=>'block-level'), 'class' => 'left', 'thclass' => 'left',  ),
@@ -98,13 +98,22 @@ class bullets_ui extends e_admin_ui
 		protected $prefs = array(
 			'visibility'		=> array('title'=> LAN_VISIBILITY, 'tab'=>0, 'type'=>'userclass', 'data' => 'str', 'help'=>''),
 			'icon_pack'		=> array('title'=> "Icon Pack", 'tab'=>0, 'type'=>'method', 'data' => 'str', 'writeParms'=>array(),'help'=>''),
-		); 
+			'slide_interval'    => array('title'=>'Slide Interval', 'type'=>'dropdown', 'data'=>'int', 'writeParms'=>array('optArray'=>array())),
+		);
 
 	
 		public function init()
 		{
 			// Set drop-down values (if any).
+			$r = range(1000,10000,1000);
 
+			$opts = array();
+			foreach($r as $v)
+			{
+				$opts[$v] = str_replace('000', '', $v).' second(s)';
+			}
+
+			$this->prefs['slide_interval']['writeParms']['optArray'] = $opts;
 
 		}
 
@@ -167,9 +176,9 @@ class bullets_ui extends e_admin_ui
 		public function renderHelp()
 		{
 			$caption = LAN_HELP;
-			$text = 'Some help text';
+			$text = 'Be sure to enable the bullets slider menu on your home page using the Menu Manager.';
 
-		//	return array('caption'=>$caption,'text'=> $text);
+			return array('caption'=>$caption,'text'=> $text);
 
 		}
 			
@@ -452,7 +461,7 @@ class bullets_form_ui extends e_admin_form_ui
 
 		$optStyle = array('default', 'primary', 'success', 'info', 'warning', 'danger');
 
-		$text .= "<option value=''>Select style...</option>";
+		$text .= "<option value=''>".LAN_INACTIVE."</option>";
 
 		foreach($optStyle as $s)
 		{
@@ -499,7 +508,7 @@ class bullets_form_ui extends e_admin_form_ui
 
 	function renderBulletButton($value)
 	{
-		if(empty($value['label']))
+		if(empty($value['label']) && empty($value['class']))
 		{
 			return null;
 		}
