@@ -31,7 +31,7 @@ if(!class_exists("bullets_setup"))
 
 			if(!empty($ret['success']))
 			{
-				e107::getMessage()->addError("Default slides imported.");
+				e107::getMessage()->addSuccess("Default slides imported.");
 			}
 
 			if(!empty($ret['failed']))
