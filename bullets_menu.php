@@ -29,7 +29,7 @@ if(!empty($parm))
 //	$text .= print_a($parm,true); // e_menu.php form data.
 }
 
-$data = e107::getDb()->retrieve('bullets','*',"ORDER BY bullet_order",true);
+$data = e107::getDb()->retrieve('bullets','*',"bullet_class IN(".USERCLASS_LIST.") ORDER BY bullet_order",true);
 
 
 $sc = e107::getScBatch('bullets',true, 'bullets');

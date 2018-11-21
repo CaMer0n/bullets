@@ -84,14 +84,16 @@ class bullets_ui extends e_admin_ui
 
 		  'bullet_title'        =>   array ( 'title' => LAN_TITLE, 'type' => 'text', 'data' => 'str', 'width' => '18%', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => array('size'=>'block-level'), 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_description'  =>   array ( 'title' => LAN_DESCRIPTION, 'type' => 'text', 'data' => 'str', 'width' => '30%', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => array('size'=>'block-level'), 'class' => 'left', 'thclass' => 'left',  ),
-		  'bullet_bullets'      =>   array ( 'title' => 'Bullets', 'type' => 'method', 'data' => 'json', 'width' => '38%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+		  'bullet_bullets'      =>   array ( 'title' => 'Bullets', 'type' => 'method', 'data' => 'json', 'width' => '35%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_button1'      =>   array ( 'title' => 'Button-1', 'type' => 'method', 'data' => 'json', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
 		  'bullet_button2'      =>   array ( 'title' => 'Button-2', 'type' => 'method', 'data' => 'json', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
 		   'bullet_order'      =>   array ( 'title' => LAN_ORDER, 'type' => 'number', 'data' => 'int', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	   'options'             =>   array ( 'title' => LAN_OPTIONS, 'type' => null, 'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
+	       'bullet_class'      =>   array ( 'title' => LAN_VISIBILITY, 'type' => 'userclass', 'data' => 'int', 'inline'=>true, 'width' => '10%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+
+	        'options'             =>   array ( 'title' => LAN_OPTIONS, 'type' => null, 'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
 		);		
 		
-		protected $fieldpref = array('bullet_title', 'bullet_description', 'bullet_bullets', 'bullet_button1', 'bullet_button2');
+		protected $fieldpref = array('bullet_title', 'bullet_description', 'bullet_bullets', 'bullet_button1', 'bullet_class');
 		
 
 	//	protected $preftabs        = array('General', 'Other' );
