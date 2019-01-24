@@ -43,6 +43,11 @@ $totalSlides = count($data);
 
 $default = array('bullet_total_slides'=>$totalSlides);
 
+if(!is_object($sc))
+{
+	return "Bullet shortcodes failed to load";
+}
+
 $sc->setVars($default);
 
 $text = $tp->parseTemplate($template['header'],true, $sc);
