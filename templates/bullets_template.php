@@ -14,11 +14,11 @@ $BULLETS_TEMPLATE['menu']['header'] 	= '<!-- Bullet Menu: header -->{SETIMAGE: w
 
 $BULLETS_TEMPLATE['menu']['footer'] 	= '</div><div class="carousel-controls">
 						                  <!-- Controls -->
-						                  <a class="left carousel-control animated zoomIn animation-delay-30" href="#carousel-bullets" role="button" data-slide="prev">
+						                  <a class="left carousel-left carousel-control animated zoomIn animation-delay-30" href="#carousel-bullets" role="button" data-slide="prev">
 						                    <i class="fa fa-chevron-left fa-fw"></i>
 						                    <span class="sr-only">Previous</span>
 						                  </a>
-						                  <a class="right carousel-control animated zoomIn animation-delay-30" href="#carousel-bullets" role="button" data-slide="next">
+						                  <a class="right carousel-right carousel-control animated zoomIn animation-delay-30" href="#carousel-bullets" role="button" data-slide="next">
 						                    <i class="fa fa-chevron-right fa-fw"></i>
 						                    <span class="sr-only">Next</span>
 						                  </a>
@@ -33,7 +33,7 @@ $BULLETS_TEMPLATE['menu']['footer'] 	= '</div><div class="carousel-controls">
 						              </div>';
 
 
-$BULLETS_TEMPLATE['menu']['start'] 	    = '<div class="item {BULLET_SLIDE_ACTIVE}" style="background-image:url({BULLET_IMAGE})">
+$BULLETS_TEMPLATE['menu']['start'] 	    = '<div class="carousel-item item {BULLET_SLIDE_ACTIVE}" style="background-image:url({BULLET_IMAGE})">
 						                  <div class="carousel-caption">
 						                    <div class="bullet-text-container">
 						                      <header class="bullet-title animated slideInLeft animation-delay-5">
@@ -58,7 +58,7 @@ $BULLETS_TEMPLATE['menu']['end'] 	    = ' </ul>
 
 $BULLETS_TEMPLATE['menu']['item'] 	    = '<li>
 			                            <div class="bullet-list-icon animated zoomInUp {BULLET_ANIMATION_DELAY}">
-			                            <span class="bullet-icon bullet-icon-circle bullet-icon-xlg label-{BULLET_ICON_STYLE} shadow-3dp">
+			                            <span class="bullet-icon bullet-icon-circle bullet-icon-xlg label-{BULLET_ICON_STYLE} badge-{BULLET_ICON_STYLE} shadow-3dp">
 			                              {BULLET_ICON}
 			                            </span>
 			                            </div>

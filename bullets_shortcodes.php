@@ -114,7 +114,7 @@ class plugin_bullets_bullets_shortcodes extends e_shortcode
 
 	public function sc_bullet_text()
 	{
-		return e107::getParser()->toHtml($this->var['bullet_bullets'][$this->count]['text'],true,'BODY');
+		return e107::getParser()->toHTML($this->var['bullet_bullets'][$this->count]['text'],true,'BODY');
 	}
 
 
