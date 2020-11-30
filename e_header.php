@@ -25,4 +25,3 @@ if(USER_AREA) // prevents inclusion of JS/CSS/meta in the admin area.
 
 
 
-?>

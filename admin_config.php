@@ -598,4 +598,3 @@ e107::js('bullets', 'js/bootstrap-iconpicker.min.js');
 require_once(e_ADMIN."footer.php");
 exit;
 
-?>
